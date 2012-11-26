@@ -149,7 +149,7 @@
   </div>
   
   <div class='mergeArticles'>
-    <%= render 'merge_articles' if @article.id %>
+    <%= render 'merge_articles' if @article.id and not current_user.admin? %>
   </div>    
   </div>
 
