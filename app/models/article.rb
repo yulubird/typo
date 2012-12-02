@@ -421,7 +421,7 @@ class Article < Content
     article = Article.find(id)
     self.body = self.body + article.body
     article.comments.each do |comment|
-    	self.comments.build(comment)
+    	self.comments << comment
     end
   end
 
