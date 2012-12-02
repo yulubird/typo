@@ -125,7 +125,7 @@ class Admin::ContentController < Admin::BaseController
     @article.merge_with(merged_id)
     
     if @article.save!
-        #@merged_article.destroy
+        @merged_article.destroy
         set_the_flash
         redirect_to :action => 'index'
         return true
