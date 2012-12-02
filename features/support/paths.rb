@@ -21,6 +21,13 @@ module NavigationHelpers
       '/admin'
     when /^the Login page$/
       '/accounts/login'
+    when /^the admin categories new page$/
+      '/admin/categories/new'
+    when /^the Manage articles page$/
+      '/admin/content'
+    when /^the article content page$/
+      '/admin/content/edit/1'
+      
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

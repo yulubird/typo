@@ -112,6 +112,25 @@ class Admin::ContentController < Admin::BaseController
     end
     render :text => nil
   end
+  
+  def merge
+    if not current_user.admin?
+        flash[:notice] = _("You don't have permission to merge articles")
+        redirect_to :action => 'index'
+    end
+    id = params[:id]
+    merged_id = params[:merge_with]
+    @article = Article.find(id)
+    @merged_article = Article.find(merged_id)
+    @article.merge_with(merged_id)
+    
+    if @article.save!
+        #@merged_article.destroy
+        set_the_flash
+        redirect_to :action => 'index'
+        return true
+    end
+  end
 
   protected
 
@@ -189,6 +208,8 @@ class Admin::ContentController < Admin::BaseController
       flash[:notice] = _('Article was successfully created')
     when 'edit'
       flash[:notice] = _('Article was successfully updated.')
+    when 'merge'
+      flash[:notice] = _('Articles were successfully merged.')
     else
       raise "I don't know how to tidy up action: #{params[:action]}"
     end
